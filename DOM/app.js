@@ -28,7 +28,7 @@
 
 
 const bookList = document.querySelector("#book-list ul")
-console.log(bookList)
+//console.log(bookList)
 bookList.addEventListener('click', (e)=>{
     console.log(e)
     let className = e.target.className
@@ -58,4 +58,33 @@ searchBook.addEventListener('keyup', function (e) {
 
         }
     })
+})
+
+const addBook = document.forms["add-book"];
+
+addBook.addEventListener("submit", (e) =>{
+e.preventDefault();
+
+const inputValue = addBook.querySelector("input").value.trim();
+
+if(inputValue){
+    const liTag = document.createElement("li");
+const firstSpan = document.createElement("span");
+const secondSpan = document.createElement("span")
+
+firstSpan.classList = 'name';
+secondSpan.classList = 'delete';
+
+liTag.appendChild(firstSpan);
+liTag.appendChild(secondSpan);
+
+firstSpan.textContent = inputValue;
+secondSpan.textContent = "delete";
+
+bookList.prepend(liTag);
+
+addBook.reset();
+
+}
+
 })
